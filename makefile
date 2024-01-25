@@ -1,24 +1,24 @@
 CC = gcc
 FLAGS = -Wall -g 
 
-all: loopstatic recstatic recdynamic loopdynamic mains maindloop maindrec
+all: loops recursives recursived loopd mains maindloop maindrec
 
-loopstatic: libclassloop.a
+loops: libclassloop.a
 # create a static lib with basic and advenced loop
 libclassloop.a: advancedClassificationLoop.o basicClassificationLoop.o
 	ar -rcs libclassloop.a advancedClassificationLoop.o basicClassificationLoop.o
 
-recstatic: libclassrec.a 
+recursives: libclassrec.a 
 # create a static lib with basic and advenced recursive
 libclassrec.a: advancedClassificationRecursion.o basicClassificationLoop.o
 	ar -rcs libclassrec.a advancedClassificationRecursion.o basicClassificationLoop.o
 
-recdynamic: libclassrec.so
+recursived: libclassrec.so
 #create a dynamic lib with basic and advenced recursive
 libclassrec.so:  advancedClassificationRecursion.o basicClassificationLoop.o
 	$(CC) -shared -o libclassrec.so advancedClassificationRecursion.o basicClassificationLoop.o
 
-loopdynamic: libclassloop.so
+loopd: libclassloop.so
 #create a dynamic lib with basic and advenced loop
 libclassloop.so:  advancedClassificationLoop.o basicClassificationLoop.o
 	$(CC) -shared -o libclassloop.so advancedClassificationLoop.o basicClassificationLoop.o
